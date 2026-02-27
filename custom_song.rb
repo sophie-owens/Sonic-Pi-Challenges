@@ -1,5 +1,10 @@
 #It's All Right
 
+#Variables
+vocals = "C:/Users/sophia_owens/Desktop/say_it's_alr.mp3"
+chatter = "C:/Users/sophia_owens/Desktop/happy_chatter.mp3"
+alr_piano = "C:/Users/sophia_owens/Desktop/it's_alr_piano.mp3"
+
 use_synth :piano
 #DEFINE a function that will play the notes
 define :intro_piano do
@@ -39,7 +44,7 @@ live_loop :high_hat do
 end
 
 live_loop :chatter do
-  sample "C:/Users/sophia_owens/Desktop/happy_chatter.mp3", amp: 2
+  sample chatter, amp: 3
   sleep 1
   stop
 end
@@ -50,23 +55,23 @@ intro_piano
 sleep 1
 
 live_loop :its_alr do
-  sample "C:/Users/sophia_owens/Desktop/say_it's_alr.mp3"
+  sample vocals
   sleep 1
   stop
 end
 
 sleep 1.5
 live_loop :its_alr_piano do
-  sample "C:/Users/sophia_owens/Desktop/it's_alr_piano.mp3"
+  sample alr_piano
   sleep 1
   stop
 end
 
 sleep 16.5
-with_fx :tremolo do
-  sample :drum_heavy_kick, amp: 3
-  sleep 0.5
-  use_synth :sc808_open_hihat
-  play :b4, sustain: 6, amp: 5
-  sleep 1
+use_synth :piano
+with_bpm 100 do
+  with_fx :ping_pong do
+    play :g3, sustain: 6, amp: 2
+    sleep 1
+  end
 end
