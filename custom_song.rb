@@ -19,17 +19,19 @@ define :intro_piano_parameter do |changing_note|
 end
 
 live_loop :high_hat do
-  # Get the current iteration count for this loop and increment it
-  count = tick(:my_counter)
-  
-  sample :hat_tap
-  sleep 0.28
-  sample :hat_psych
-  sleep 1
-  
-  # Stop the loop after 5 iterations
-  if count >= 9
-    stop # This stops the current thread/live_loop
+  with_bpm 65 do
+    # Get the current iteration count for this loop and increment it
+    count = tick(:my_counter)
+    
+    sample :hat_tap
+    sleep 0.28
+    sample :hat_psych
+    sleep 1
+    
+    # Stop the loop after 5 iterations
+    if count >= 9
+      stop # This stops the current thread/live_loop
+    end
   end
 end
 
